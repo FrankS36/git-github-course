@@ -245,6 +245,15 @@ git push -> push all commits to the remote repository
 
 added 
 
+git config settings 
+----------------
+git config --global user.name "username"
+git config --global user.email "email"
+
+git config --global core.editor "vim" -> set vim as the default editor
+git config --global core.editor "nano" -> set nano as the default editor
+git config --global core.editor "code" -> set code as the default editor (vscode) 
+    
 
 
 
