@@ -1,0 +1,192 @@
+cd .. will move us back one level in hierarchy
+clear -> clears terminal history
+nano -> open and update files in bash terminal
+open . -> mac command to open file browser
+start . -> windows command to open file browser
+touch: create a file (ex sample.doc)
+tab to autocomplete in terminal
+start sample.doc will open that file
+      
+basic command line: cd, cwd, pwd, ls (list contents), dir (list contents)
+
+mkdir -> makes a new directory (folder) in the cwd
+
+cd -> change directory
+cd .. -> move up one directory
+cd ~ -> move to home directory
+cd / -> move to root directory
+cd /Users/ -> move to Users directory
+cd /Users/username/ -> move to username directory
+mkdir -> make a new directory
+mkdir newdir -> make a new directory called newdir
+mkdir newdir1 newdir2 -> make two new directories
+mkdir -p newdir1/newdir2 -> make a new directory inside another directory
+rm -> remove a file
+rm sample.doc -> remove a file called sample.doc
+rm -r newdir1 -> remove a directory called newdir1
+rm -r newdir1 newdir2 -> remove two directories
+rm -rf newdir1 -> remove a directory called newdir1 without asking for confirmation
+
+touch -> create a new file
+touch sample.doc -> create a new file called sample.doc
+touch sample1.doc sample2.doc -> create two new files
+touch -a sample.doc -> update the access time of sample.doc
+touch -m sample.doc -> update the modification time of sample.doc
+touch -t 201801010000 sample.doc -> set the modification time of sample.doc to 1/1/2018 at midnight
+
+cp -> copy a file
+cp sample.doc sample2.doc -> copy sample.doc to sample2.doc
+cp sample.doc newdir1/sample2.doc -> copy sample.doc to newdir1/sample2.doc 
+cp -r newdir1 newdir2 -> copy newdir1 to newdir2
+cp -r newdir1 newdir2/newdir3 -> copy newdir1 to newdir2/newdir3
+
+mv -> move a file
+mv sample.doc sample2.doc -> move sample.doc to sample2.doc
+mv sample.doc newdir1/sample2.doc -> move sample.doc to newdir1/sample2.doc
+mv newdir1 newdir2 -> move newdir1 to newdir2
+mv newdir1 newdir2/newdir3 -> move newdir1 to newdir2/newdir3
+
+pwd -> print working directory
+pwd -P -> print physical working directory
+pwd -L -> print logical working directory
+
+ls -> list contents of a directory
+ls -a -> list all contents of a directory
+ls -l -> list contents of a directory in long format
+ls -t -> list contents of a directory sorted by modification time
+ls -r -> list contents of a directory in reverse order
+ls -R -> list contents of a directory and all subdirectories
+ls -1 -> list contents of a directory in one column
+ls -m -> list contents of a directory separated by commas
+ls -F -> list contents of a directory with a trailing slash after directories
+ls -S -> list contents of a directory sorted by file size
+ls -X -> list contents of a directory sorted by extension
+ls -U -> list contents of a directory in unsorted order
+ls -d -> list only directories
+ls -h -> list contents of a directory in human readable format
+ls -H -> list contents of a directory in human readable format with base 1000
+ls -i -> list contents of a directory with inode number
+ls -n -> list contents of a directory with numeric uid and gid
+ls -s -> list contents of a directory with file size in blocks
+ls -x -> list contents of a directory sorted by columns
+ls -A -> list all contents of a directory except . and ..
+ls -C -> list contents of a directory in columns
+ls -q -> list contents of a directory in non-printing characters
+ls -Q -> list contents of a directory in non-printing characters with quotes
+ls -u -> list contents of a directory sorted by access time
+
+cat -> concatenate files and print on the standard output
+cat sample.doc -> print the contents of sample.doc
+cat sample1.doc sample2.doc -> print the contents of sample1.doc and sample2.doc
+cat -n sample.doc -> print the contents of sample.doc with line numbers
+cat -b sample.doc -> print the contents of sample.doc with non-blank line numbers
+cat -s sample.doc -> print the contents of sample.doc with blank lines removed
+cat -E sample.doc -> print the contents of sample.doc with $ at the end of each line
+
+head -> output the first part of files
+head sample.doc -> output the first 10 lines of sample.doc
+head -n 5 sample.doc -> output the first 5 lines of sample.doc
+head -c 5 sample.doc -> output the first 5 bytes of sample.doc
+head -q sample.doc -> output the first 10 lines of sample.doc without headers
+
+tail -> output the last part of files
+tail sample.doc -> output the last 10 lines of sample.doc
+tail -n 5 sample.doc -> output the last 5 lines of sample.doc
+tail -c 5 sample.doc -> output the last 5 bytes of sample.doc
+
+
+grep -> search for a pattern in a file
+grep "pattern" sample.doc -> search for a pattern in sample.doc
+grep -i "pattern" sample.doc -> search for a pattern in sample.doc ignoring case
+grep -v "pattern" sample.doc -> search for a pattern in sample.doc and output lines that do not match
+grep -c "pattern" sample.doc -> search for a pattern in sample.doc and output the number of matches
+grep -l "pattern" sample.doc -> search for a pattern in sample.doc and output the name of the file
+
+wc -> print newline, word, and byte counts for each file
+wc sample.doc -> print newline, word, and byte counts for sample.doc
+wc -l sample.doc -> print newline count for sample.doc
+wc -w sample.doc -> print word count for sample.doc
+
+sort -> sort lines of text files
+sort sample.doc -> sort lines of sample.doc
+sort -r sample.doc -> sort lines of sample.doc in reverse order
+sort -n sample.doc -> sort lines of sample.doc numerically
+sort -k 2 sample.doc -> sort lines of sample.doc based on the second field
+sort -k 2,3 sample.doc -> sort lines of sample.doc based on the second and third field
+
+uniq -> report or omit repeated lines
+uniq sample.doc -> report or omit repeated lines in sample.doc
+uniq -c sample.doc -> report or omit repeated lines in sample.doc with a count of the number of times each line was repeated
+
+cut -> remove sections from each line of files
+cut -c 1 sample.doc -> remove all but the first character from each line of sample.doc
+
+paste -> merge lines of files
+paste sample1.doc sample2.doc -> merge lines of sample1.doc and sample2.doc
+
+join -> join lines of two files on a common field
+join sample1.doc sample2.doc -> join lines of sample1.doc and sample2.doc on the first field
+
+tr -> translate or delete characters
+tr "a-z" "A-Z" < sample.doc -> translate lowercase letters to uppercase letters in sample.doc
+tr -d "a-z" < sample.doc -> delete lowercase letters in sample.doc
+
+sed -> stream editor for filtering and transforming text
+sed "s/pattern/replacement/" sample.doc -> replace all instances of pattern with replacement in sample.doc
+sed "s/pattern/replacement/g" sample.doc -> replace all instances of pattern with replacement in sample.doc globally
+
+awk -> pattern scanning and processing language
+awk '{print $1}' sample.doc -> print the first field of each line in sample.doc
+awk '{print $1, $2}' sample.doc -> print the first and second field of each line in sample.doc
+awk '{print $1, $2, $3}' sample.doc -> print the first, second, and third field of each line in sample.doc
+
+find -> search for files in a directory hierarchy
+find . -name "sample*" -> search for files in the current directory that start with sample
+find . -name "*sample*" -> search for files in the current directory that contain sample
+find . -name "*sample" -> search for files in the current directory that end with sample
+
+locate -> search for files in a database
+locate sample.doc -> search for files in the database that contain sample.doc
+
+which -> locate a command
+which ls -> locate the ls command
+
+whereis -> locate the binary, source, and manual page files for a command
+
+
+tar -> create and manipulate tar archives
+tar -cvf sample.tar sample.doc -> create a tar archive named sample.tar containing sample.doc
+tar -xvf sample.tar -> extract the contents of sample.tar
+tar -tvf sample.tar -> list the contents of sample.tar
+
+gzip -> compress or expand files
+gzip sample.doc -> compress sample.doc
+gzip -d sample.doc.gz -> decompress sample.doc.gz
+
+bzip2 -> compress or expand files
+bzip2 sample.doc -> compress sample.doc
+
+zip -> compress or expand files
+zip sample.zip sample.doc -> compress sample.doc
+
+unzip -> expand zip archives
+
+rar -> compress or expand files
+rar a sample.rar sample.doc -> compress sample.doc
+
+unrar -> expand rar archives
+
+7z -> compress or expand files
+7z a sample.7z sample.doc -> compress sample.doc
+
+
+chmod -> change file mode bits
+chmod 777 sample.doc -> change the mode bits of sample.doc to 777
+
+chown -> change file owner and group
+chown root sample.doc -> change the owner of sample.doc to root
+
+chgrp -> change file group
+
+chattr -> change file attributes
+
