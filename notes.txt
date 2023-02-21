@@ -243,6 +243,7 @@ git add . -> add all files to the staging area
 git commit -m "message" -> commit all files in the staging area with a message
 git push -> push all commits to the remote repository
 
+added 
 
 
 
