@@ -6,6 +6,7 @@ start . -> windows command to open file browser
 touch: create a file (ex sample.doc)
 tab to autocomplete in terminal
 start sample.doc will open that file
+ls -a -> list contents of a directory including hidden files
       
 basic command line: cd, cwd, pwd, ls (list contents), dir (list contents)
 
@@ -189,4 +190,60 @@ chown root sample.doc -> change the owner of sample.doc to root
 chgrp -> change file group
 
 chattr -> change file attributes
+----------------
+git init -> initialize a git repository
+git add . -> add all files to the staging area
+git commit -m "message" -> commit all files in the staging area with a message
+git status -> show the status of the repository
+git log -> show the commit history of the repository
+git log --oneline -> show the commit history of the repository in one line
+git log --oneline --graph -> show the commit history of the repository in one line with a graph
+
+git diff -> show the difference between the working directory and the staging area
+git diff --staged -> show the difference between the staging area and the repository
+git diff HEAD -> show the difference between the working directory and the repository
+
+git tracks the current directory and all subdirectories
+everything nested inside the current directory is tracked
+all files will be tracked
+
+do not initialize repo inside another repo
+do not initialize repo inside a directory that is already being tracked
+run git status to check if a directory is being tracked
+if directory is being tracked, back out and     initialize repo in a different directory
+
+the git commiting workflow
+----------------
+git add . -> add all files to the staging area
+git commit -m "message" -> commit all files in the staging area with a message
+git push -> push all commits to the remote repository
+
+pushing to github
+----------------
+git remote add origin
+git push -u origin master
+
+pulling from github
+----------------
+git pull origin master
+
+adding github url
+----------------
+git remote add origin
+
+cloning a repo from github
+----------------
+git clone
+
+
+changes not staged for commit 
+----------------    
+git add . -> add all files to the staging area
+git commit -m "message" -> commit all files in the staging area with a message
+git push -> push all commits to the remote repository
+
+
+
+
+
 
