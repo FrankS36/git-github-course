@@ -29,6 +29,19 @@ rm -r newdir1 -> remove a directory called newdir1
 rm -r newdir1 newdir2 -> remove two directories
 rm -rf newdir1 -> remove a directory called newdir1 without asking for confirmation
 
+
+cwd -> current working directory
+pwd -> print working directory
+pwd -P -> print physical working directory
+pwd -L -> print logical working directory
+
+#add a branch to the repository
+git branch branchname
+#switch to a branch
+git checkout branchname
+#add a file to the staging area
+
+
 touch -> create a new file
 touch sample.doc -> create a new file called sample.doc
 touch sample1.doc sample2.doc -> create two new files
@@ -47,6 +60,8 @@ mv sample.doc sample2.doc -> move sample.doc to sample2.doc
 mv sample.doc newdir1/sample2.doc -> move sample.doc to newdir1/sample2.doc
 mv newdir1 newdir2 -> move newdir1 to newdir2
 mv newdir1 newdir2/newdir3 -> move newdir1 to newdir2/newdir3
+# move from one directory to another
+mv sample.doc newdir1/sample2.doc -> move sample.doc to newdir1/sample2.doc
 
 pwd -> print working directory
 pwd -P -> print physical working directory
@@ -155,6 +170,20 @@ which ls -> locate the ls command
 
 whereis -> locate the binary, source, and manual page files for a command
 
+remove all files except
+rm -f sample.doc -> remove sample.doc
+rm -f sample* -> remove all files that start with sample
+rm -f *sample* -> remove all files that contain sample
+rm -f *sample -> remove all files that end with sample
+
+remove a branch
+
+
+
+remove a directory
+rm -rf sample -> remove the sample directory
+
+
 
 tar -> create and manipulate tar archives
 tar -cvf sample.tar sample.doc -> create a tar archive named sample.tar containing sample.doc
@@ -199,6 +228,21 @@ git status -> show the status of the repository
 git log -> show the commit history of the repository
 git log --oneline -> show the commit history of the repository in one line
 git log --oneline --graph -> show the commit history of the repository in one line with a graph
+
+git branching
+----------------
+git branch -> show all branches
+git branch branch_name -> create a new branch
+git checkout branch_name -> switch to a branch
+git checkout -b branch_name -> create and switch to a branch
+git merge branch_name -> merge a branch into the current branch
+git branch -d branch_name -> delete a branch
+#active branch will have an asterisk next to it
+
+git head 
+----------------
+
+
 
 git diff -> show the difference between the working directory and the staging area
 git diff --staged -> show the difference between the staging area and the repository
@@ -253,8 +297,21 @@ git config --global user.email "email"
 git config --global core.editor "vim" -> set vim as the default editor
 git config --global core.editor "nano" -> set nano as the default editor
 git config --global core.editor "code" -> set code as the default editor (vscode) 
-    
 
+amending commits 
+----------------
+git commit --amend -m "message" -> amend the last commit with a new message
+
+#add a file to the last commit
+git add filename.extension
+git commit --amend --no-edit
+
+git ignore
+--
+touch .gitignore -> create a .gitignore file
+echo "filename.extension" >> .gitignore -> add a file to the .gitignore file
+echo "directoryname/" >> .gitignore -> add a directory to the .gitignore file
+echo "directoryname/*" >> .gitignore -> add all files in a directory to the .gitignore file
 
 
 
