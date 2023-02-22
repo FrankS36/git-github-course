@@ -220,6 +220,62 @@ chown root sample.doc -> change the owner of sample.doc to root
 chgrp -> change file group
 
 chattr -> change file attributes
+
+
+
+
+
+
+git notes: 
+________
+git is a version control system
+*keeps track of changes
+*allows multiple people to work on the same project
+*allows you to go back to previous versions of your project
+*runs on local system > no need for network connection
+
+3 main states of a file in git
+*modified 
+*modified
+*committed 
+
+the git commiting workflow
+----------------
+The basic Git workflow goes something like this:
+1. You modify files in your working tree.
+2. You selectively stage just those changes you want to be part of your next commit, which adds
+only those changes to the staging area.
+* add . > adds all files to the staging area
+* add filename.extension > adds select files to the staging area
+3. You do a commit, which takes the files as they are in the staging area and stores that snapshot
+permanently to your Git directory.
+
+If a particular version of a file is in the Git directory, it’s considered committed. If it has been
+modified and was added to the staging area, it is staged. And if it was changed since it was checked
+out but has not been staged, it is modified. 
+
+git add . -> add all files to the staging area
+git commit -m "message" -> commit all files in the staging area with a message
+git push -> push all commits to the remote repository
+
+git help <verb> -> show help for a specific git verb
+*ex: git help config 
+git <verb> --help -> show help for a specific git verb
+* git config --help
+
+getting setup with git
+----------------------------------------------------------------
+If you have a project directory that is currently not under version control and you want to start
+controlling it with Git, you first need to go to that project’s directory. If you’ve never done this, it
+looks a little different depending on which system you’re running:
+
+cd to file location, then the following commands will be run to initialize and start version-controlling the project
+git init -> this creates a .git subdirectory in the current directory (hidden files have a . in front of them)
+* can view hidden files in the current directory -> dir -a --or-- dir --all
+git add *.C -> *.C is a file glob 
+git add LICENSE
+git commit -m "initial project version"
+
 ----------------
 git init -> initialize a git repository
 git add . -> add all files to the staging area
@@ -239,11 +295,8 @@ git merge branch_name -> merge a branch into the current branch
 git branch -d branch_name -> delete a branch
 #active branch will have an asterisk next to it
 
-git head 
+git head > points to the current branch (the last commit in the branch)
 ----------------
-
-
-
 git diff -> show the difference between the working directory and the staging area
 git diff --staged -> show the difference between the staging area and the repository
 git diff HEAD -> show the difference between the working directory and the repository
@@ -259,6 +312,19 @@ if directory is being tracked, back out and     initialize repo in a different d
 
 the git commiting workflow
 ----------------
+The basic Git workflow goes something like this:
+1. You modify files in your working tree.
+2. You selectively stage just those changes you want to be part of your next commit, which adds
+only those changes to the staging area.
+* add . > adds all files to the staging area
+* add filename.extension > adds select files to the staging area
+3. You do a commit, which takes the files as they are in the staging area and stores that snapshot
+permanently to your Git directory.
+
+If a particular version of a file is in the Git directory, it’s considered committed. If it has been
+modified and was added to the staging area, it is staged. And if it was changed since it was checked
+out but has not been staged, it is modified. 
+
 git add . -> add all files to the staging area
 git commit -m "message" -> commit all files in the staging area with a message
 git push -> push all commits to the remote repository
@@ -291,6 +357,7 @@ added
 
 git config settings 
 ----------------
+git config --list -> shows list of config settings
 git config --global user.name "username"
 git config --global user.email "email"
 
