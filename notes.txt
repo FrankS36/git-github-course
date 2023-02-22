@@ -276,14 +276,61 @@ git add *.C -> *.C is a file glob
 git add LICENSE
 git commit -m "initial project version"
 
+recording changes to the repository
+----------------------------------------------------------------
+at this point we have a bona fide git repo on local machine, and a checkout (or working copy) of the files in front of you
+*git repo is a directory that contains all the files for a project, as well as the entire history of revisions to those files
+*checkout is a copy of the project files that are currently being worked on
+
+at this point, we will start making changes and committing snapshots of those changes to our repo each time the project reaches
+a state we want to record
+* recall that each file can be in one of 2 states: tracked or untracked
+* tracked files are files that were in the last snapshot; they can be unmodified, modified, or staged > tracked files are the files
+that git knows about
+
+* untracked files are everything else; these are any files in the working directory that were not in the last snapshot and are not known to git 
+
+
+checking the status of the files
+----------------
+git status -> show the status of the repository
+* The main tool you use to determine which files are in which state
+* will be unmodified, modified, and staged > tracked files are the files that git knows about; untracked are files not known to git
+* untracked files are files git did not see in the last snapshot
+
+staging untracked files
+----------------
+adding a file to the working directory will result in an untracked file in the working directory
+* git status will show the file as untracked
+ex: 
+touch README 
+git status -> README is untracked
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+  README
+
+to begin tracking the file, we use git add <file>
+* this will move the file from untracked to staged
+
+staging modification
+----------------
+* if we modify a file that is already tracked, git status will show the file as modified
+ex:
+
+
+
 ----------------
 git init -> initialize a git repository
 git add . -> add all files to the staging area
 git commit -m "message" -> commit all files in the staging area with a message
 git status -> show the status of the repository
-git log -> show the commit history of the repository
-git log --oneline -> show the commit history of the repository in one line
-git log --oneline --graph -> show the commit history of the repository in one line with a graph
+
+
+cloning a git repository
+----------------
+git clone <url> -> clone a repository into a new directory
+git clone <url> <new directory name> -> clone a repository into a specific directory
+
 
 git branching
 ----------------
@@ -305,7 +352,7 @@ git tracks the current directory and all subdirectories
 everything nested inside the current directory is tracked
 all files will be tracked
 
-do not initialize repo inside another repo
+***do not initialize repo inside another repo
 do not initialize repo inside a directory that is already being tracked
 run git status to check if a directory is being tracked
 if directory is being tracked, back out and     initialize repo in a different directory
