@@ -8,6 +8,9 @@ tab to autocomplete in terminal
 start sample.doc will open that file
 ls -a -> list contents of a directory including hidden files
 code . -> open current directory in VS Code
+open txt file in VS Code from command line
+code sample.txt
+cat -> print contents of a file
       
 basic command line: cd, cwd, pwd, ls (list contents), dir (list contents)
 
@@ -332,6 +335,12 @@ git clone <url> -> clone a repository into a new directory
 git clone <url> <new directory name> -> clone a repository into a specific directory
 
 
+git head 
+--------------------------------
+git head > points to the current branch (the last commit in the branch)
+* the HEAD pointer is a reference to the last commit in the currently checked out branch
+* commit hash is the hash of the commit that HEAD points to
+
 git branching
 ----------------
 git branch -> show all branches
@@ -375,6 +384,19 @@ out but has not been staged, it is modified.
 git add . -> add all files to the staging area
 git commit -m "message" -> commit all files in the staging area with a message
 git push -> push all commits to the remote repository
+
+add and commit in one line
+----------------
+git commit -am "message" -> add and commit in one line
+
+git merging
+----------------
+git merge branch_name -> merge a branch into the current branch
+* git merge is used to combine the changes from one branch into another
+
+* common practice is to treat master/main branch as the source of truth
+* do experimental work on feature branches before merging back into master/main
+
 
 pushing to github
 ----------------
