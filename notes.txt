@@ -38,6 +38,7 @@ pwd -> print working directory
 pwd -P -> print physical working directory
 pwd -L -> print logical working directory
 
+
 #add a branch to the repository
 git branch branchname
 #switch to a branch
@@ -342,6 +343,16 @@ git head > points to the current branch (the last commit in the branch)
 * commit hash is the hash of the commit that HEAD points to
 
 git branching
+* this is gits killer feature
+Nearly every VCS has some form of branching support. 
+Branching means you diverge from the main line of development and 
+continue to do work without messing with that main line. 
+In many VCS tools, this is a somewhat expensive process, 
+often requiring you to create a new copy of your source code directory, 
+which can take a long time for large projects.
+
+*recall that git stores data as a series of snapshots
+
 ----------------
 git branch -> show all branches
 git branch branch_name -> create a new branch
@@ -352,10 +363,59 @@ git branch -d branch_name -> delete a branch
 #active branch will have an asterisk next to it
 
 git head > points to the current branch (the last commit in the branch)
+
+git diff > show unstaged changes
 ----------------
+* git diff shows the difference between the working directory and the staging area (only items not in the staging area)
 git diff -> show the difference between the working directory and the staging area
+  * another way to think of this is showing the things that we have not staged yet 
+  (the changes we have made that we have not added to the staging area)
+  * if git diff is blank then we have nothing that has not been staged
+  * file must be tracked to be able to use git diff
 git diff --staged -> show the difference between the staging area and the repository
 git diff HEAD -> show the difference between the working directory and the repository
+
+git diff output: 
+* the first line shows the files being compared (usually both are the same file and we are comparing them at different points in time)
+* the second line shows index and the commit hash
+* then we see 2 lines of marker (changes in file a will be indicated with -- and changes in file b will be indicated with ++)
+* then we see the chunks of changes (just a sample of the changes - not every line of our code)
+ * chunk header ex: @@ -1,3 +1,4 @@ > -1,3 refers to the first file and +1,4 refers to the second file
+  * -1,3 means the chunk starts at line 1 and is 3 lines long
+  * +1,4 means the chunk starts at line 1 and is 4 lines long
+what is the source of the information above?
+* the source of the information is the diff algorithm
+* the diff algorithm is a tool that compares 2 files and outputs the differences between them
+* the diff algorithm is used by git to compare files and output the differences between them
+
+
+Example: 
+$ git diff --staged
+
+diff --git a/songs.txt b/songs.txt
+index b7b2867..ed5a22d 100644
+--- a/songs.txt
++++ b/songs.txt
+@@ -2,3 +2,4 @@ git song 1
+ song 2
+ hit em up
+ ca love
++brenda
+
+git diff --cached -> show the difference between the staging area and the repository
+* this is simply an alias for git diff --staged
+
+can specify a file to see the difference between the working directory and the staging area
+ex: git diff README.md -> show the difference between the working directory 
+and the staging area for README.md
+
+- keyboard shortcut to reset git terminal state
+- ctrl + c -> reset git terminal state
+
+
+----------------
+
+
 
 git tracks the current directory and all subdirectories
 everything nested inside the current directory is tracked
@@ -396,12 +456,81 @@ git merge branch_name -> merge a branch into the current branch
 
 * common practice is to treat master/main branch as the source of truth
 * do experimental work on feature branches before merging back into master/main
+* some people refer to master as the trunk > this is the most stable version of the code
+* we merge branches, not specific commits
+* we always merge to the head of the branch
 
+common merge workflow: 
+1. create a new branch
+2. make changes on the new branch
+3. switch to master
+4. merge the new branch into master
+
+common sources of merge conflicts: 
+1. different people making changes to the same line of the same file
+2. different people deleting the same file
+3. different people renaming the same file
+
+fast-forward merge: (simple merge to perform-merely moves pointer forward)
+* when the branch being merged in does not have any new commits, 
+git will simply move the pointer forward
+* this is a simple, non-destructive merge
+* fast forward moves the pointer forward to the latest commit
+
+if commits have been made on master and we do not have them on our feature branch,
+
+merge commits: 
+* when the branch being merged in has new commits,
+git will create a new commit that combines the two histories
+* this is a new commit that has two unique parents (as opposed to fast forward which has one parent)
+* merge commits are more complex than fast forward merges
+
+ex workflow for merge conflicts:
+1. create a new branch
+2. make changes on the new branch
+3. switch to master
+4. make changes on master
+5. merge the new branch into master
+6. resolve merge conflicts
+*remove the lines that git added to indicate the merge conflict
+*make the changes we want to keep
+*add and commit the resolved files
+
+
+git add filename.extension
+git commit -m "message"
+*switch to master branch and merge feature branch
+git checkout master
+git merge feature_branch_name
+*if there are merge conflicts, resolve them
+*add and commit the resolved files
+
+we may get the hint error message:  "hint: Updates were rejected because the tip of 
+your current branch is behind"
+* this means that the branch we are trying to merge into is not up to date
+* we need to pull the latest changes from the remote repository
+* we can do this by running git pull origin master
+* this will pull the latest changes from the remote repository and merge them into our local repository
+git will automatically try to merge our commits, but we may run into merge conflicts:
+merge conflicts must be manually resolved before we can commit the changes
+we have to open files where merge conflicts exist and manually resolve the conflicts
+
+
+git tagging
+----------------
+git tag -> show all tags
+git tag tag_name -> create a new tag
+git tag -a tag_name -m "message" -> create a new annotated tag
+git tag -d tag_name -> delete a tag
+git show tag_name -> show tag information
+*we can use tags to mark specific points in the history of a project
+*one such use case is to mark a release
 
 pushing to github
 ----------------
 git remote add origin
 git push -u origin master
+
 
 pulling from github
 ----------------
@@ -448,6 +577,44 @@ touch .gitignore -> create a .gitignore file
 echo "filename.extension" >> .gitignore -> add a file to the .gitignore file
 echo "directoryname/" >> .gitignore -> add a directory to the .gitignore file
 echo "directoryname/*" >> .gitignore -> add all files in a directory to the .gitignore file
+
+
+resolving merge conflicts > we can resolve merge conflicts by 
+opening the files that have merge conflicts and manually resolving the conflicts
+* remove the lines that git added to indicate the merge conflict (<<<<<<< HEAD, =======, >>>>>>>)
+* make the changes we want to keep
+* add and commit the resolved files
+
+we can also use vscode to resolve merge conflicts
+* open the file that has a merge conflict
+* vscode will show the merge conflict in the editor
+* we can use the editor to resolve the merge conflict
+* we can also use the command line to resolve merge conflicts
+* we can use the command line to resolve merge conflicts by opening the file that has a merge conflict
+
+
+Github Basics: 
+---------------
+We can push code from local machine UP to cloud (github)
+Then, we can pull the repository DOWN 
+all of this means we can collaborate at scale 
+***we give our code a home in the cloud 
+
+Cloning: 
+----------------
+to clone a repository, we use the git clone command
+git clone url -> clone a repository from a url
+this will create a new directory with the same name as the repository
+this directory will contain all of the files in the repository
+we can also clone a repository from a local path
+cloning gives us access to the full commit history of the repository
+git clone path -> clone a repository from a local path
+
+git clone
+git clone url -> clone a repository from a url
+git clone path -> clone a repository from a local path
+
+
 
 
 
